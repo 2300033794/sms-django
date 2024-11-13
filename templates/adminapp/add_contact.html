@@ -1,0 +1,89 @@
+<style>
+    /* Form container styling */
+    .form-container {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Form field styling */
+    .form-field {
+        margin-bottom: 15px;
+    }
+
+    .form-field label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: #333;
+    }
+
+    .form-field input[type="text"],
+    .form-field input[type="email"],
+    .form-field input[type="password"],
+    .form-field input[type="number"],
+    .form-field input[type="tel"],
+    .form-field select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    /* Button styling */
+    .form-buttons {
+        display: flex;
+        gap: 10px;
+        justify-content: flex-end;
+        margin-top: 20px;
+    }
+
+    .form-buttons button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .form-buttons .save-send-btn {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    .form-buttons .save-only-btn {
+        background-color: #f0ad4e;
+        color: white;
+    }
+
+    .form-buttons button:hover {
+        opacity: 0.9;
+    }
+</style>
+
+<div class="form-container">
+    <h2>Add Contact</h2>
+    <form method="POST">
+        {% csrf_token %}
+
+        <!-- Django form fields rendered here -->
+        <div class="form-field">
+            {{ form.as_p }}
+        </div>
+
+        <!-- Recipient Email field -->
+        <div class="form-field">
+            <label for="recipient_email">Recipient Email (Optional)</label>
+            <input type="email" id="recipient_email" name="recipient_email" placeholder="Enter recipient's email">
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="form-buttons">
+            <button type="submit" name="send_email" class="save-send-btn">Save & Send Email</button>
+            <button type="submit" class="save-only-btn">Save Only</button>
+        </div>
+    </form>
+</div>
